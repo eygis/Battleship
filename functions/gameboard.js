@@ -13,12 +13,6 @@ export let gameboardFactory = () => {
         xsmall: null,
         small: null,
         medium: null,
-        get info() {
-            return {xsmall: this.xsmall, 
-                    small: this.small, 
-                    medium: this.medium
-                }
-        }
     }
 
     let checker = (arr, target) => {
@@ -52,13 +46,11 @@ export let gameboardFactory = () => {
       }
     }
 
-    
-    let getter = coordinates.info;
-
 
     return {
-        coordinates,
-        getter,
+        get coordinates() {
+            return coordinates
+        },
         generateCoordinates
     }
 }
