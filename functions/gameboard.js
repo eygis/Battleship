@@ -1,11 +1,11 @@
 const ship = require('./ship');
 const shipFactory = ship.shipFactory;
 
-/*export const ships = {
+export const ships = {
     xsmall: shipFactory(2),
     small: shipFactory(3),
     medium: shipFactory(4)
-}*/
+}
 
 export let gameboardFactory = () => {
 
@@ -19,16 +19,16 @@ export let gameboardFactory = () => {
         return target.every(value => arr.includes(value));
     }
     
-    let generateCoordinates = (size, length) => {
+    let generateCoordinates = (size) => {
       while (coordinates[size] == null) {
       let array = [];
       let flag = true;
       let subArray = [];
       for (let i = 0; i < 2; i++) {
-           subArray.push(Math.ceil(Math.random() * (11 - length)))
+           subArray.push(Math.ceil(Math.random() * (11 - ships[size].length)))
           }
       array.push(subArray);
-      for (let j = 0, value2 = (subArray[1] + 1); j < (length -1); j++, value2++) {
+      for (let j = 0, value2 = (subArray[1] + 1); j < (ships[size].length -1); j++, value2++) {
           let subsub = [subArray[0]]; 
         subsub.push(value2)
         array.push(subsub)
