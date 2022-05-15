@@ -13,11 +13,13 @@ export let gameboardFactory = () => {
         xsmall: null,
         small: null,
         medium: null,
+        misses: []
     }
 
     let checker = (arr, target) => {
-        return target.every(value => arr.includes(value));
-    }
+      return	arr.length === target.length &&
+        arr.every((c, i) => c === target[i]);
+          }
     
     let generateCoordinates = (size) => {
       while (coordinates[size] == null) {
@@ -46,11 +48,29 @@ export let gameboardFactory = () => {
       }
     }
 
+    let receiveAttack = (attackLocation) => {
+      let flag = false
+      Object.values(coordinates).forEach((val, coordinatesIndex) => {
+        if (val == null) return
+        val.forEach((pair, valueIndex) => {
+          if (checker(pair, attackLocation)) {
+            let damage = Object.keys(ships)[coordinatesIndex];
+            ships[damage].hit(valueIndex)
+            flag = true;
+          }
+        })
+        })
+        if (flag == false) {
+          coordinates.misses.push(attackLocation);
+        }
+    }
+
 
     return {
         get coordinates() {
             return coordinates
         },
-        generateCoordinates
+        generateCoordinates,
+        receiveAttack
     }
 }
