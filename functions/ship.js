@@ -2,7 +2,7 @@ export let shipFactory = (length) => {
     
     let hits = new Array(length).fill(false)
 
-    let isSunk = () => {
+    let sunk = () => {
         return hits.every(value => (value))
     }
 
@@ -13,7 +13,9 @@ export let shipFactory = (length) => {
     return {
         length,
         hits,
-        isSunk: isSunk(),
+        get isSunk() {
+            return sunk()
+        },
         hit
     }
 }

@@ -54,8 +54,8 @@ export let gameboardFactory = () => {
         if (val == null) return
         val.forEach((pair, valueIndex) => {
           if (checker(pair, attackLocation)) {
-            let damage = Object.keys(ships)[coordinatesIndex];
-            ships[damage].hit(valueIndex)
+            let damagedShip = Object.keys(ships)[coordinatesIndex];
+            ships[damagedShip].hit(valueIndex);
             flag = true;
           }
         })
@@ -65,12 +65,22 @@ export let gameboardFactory = () => {
         }
     }
 
+    let allSunk = () => {
+      for (let key in ships) {
+        if (ships[key].isSunk == false) {
+          return false;
+        }
+      }
+      return true;
+    }
+
 
     return {
         get coordinates() {
             return coordinates
         },
         generateCoordinates,
-        receiveAttack
+        receiveAttack,
+        allSunk
     }
 }
