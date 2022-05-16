@@ -66,7 +66,7 @@ describe('gameboard tests', () => {
         });
         newGame.coordinates.xsmall = [[2, 1], [2, 2]];
         newGame.coordinates.small = [[1, 1], [1, 2], [1, 3]];
-        newGame.coordinates.medium = [[3, 1], [3, 2], [3, 3], [3, 4]]
+        newGame.coordinates.medium = [[3, 1], [3, 2], [3, 3], [3, 4]];
         newGame.receiveAttack([1, 1]);
         newGame.receiveAttack([1, 2]);
         newGame.receiveAttack([1, 3]);

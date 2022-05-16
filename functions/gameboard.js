@@ -13,7 +13,8 @@ export let gameboardFactory = () => {
         xsmall: null,
         small: null,
         medium: null,
-        misses: []
+        misses: [],
+        shots: []
     }
 
     let checker = (arr, target) => {
@@ -27,7 +28,7 @@ export let gameboardFactory = () => {
       let flag = true;
       let subArray = [];
       for (let i = 0; i < 2; i++) {
-           subArray.push(Math.ceil(Math.random() * (11 - ships[size].length)))
+           subArray.push(Math.floor(Math.random() * (11 - ships[size].length)) + 1)
           }
       array.push(subArray);
       for (let j = 0, value2 = (subArray[1] + 1); j < (ships[size].length -1); j++, value2++) {
@@ -51,7 +52,7 @@ export let gameboardFactory = () => {
     let receiveAttack = (attackLocation) => {
       let flag = false
       Object.values(coordinates).forEach((val, coordinatesIndex) => {
-        if (val == null) return
+        if (val == null || coordinatesIndex == (Object.keys(coordinates).length - 1)) return
         val.forEach((pair, valueIndex) => {
           if (checker(pair, attackLocation)) {
             let damagedShip = Object.keys(ships)[coordinatesIndex];
@@ -63,6 +64,7 @@ export let gameboardFactory = () => {
         if (flag == false) {
           coordinates.misses.push(attackLocation);
         }
+      coordinates.shots.push(attackLocation)
     }
 
     let allSunk = () => {
@@ -81,6 +83,7 @@ export let gameboardFactory = () => {
         },
         generateCoordinates,
         receiveAttack,
-        allSunk
+        allSunk,
+        checker
     }
 }
