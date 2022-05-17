@@ -1,6 +1,25 @@
 const gameboard = require('./gameboard');
 const gameboardFactory = gameboard.gameboardFactory();
 const checker = gameboardFactory.checker;
+
+/*let drawGrid = () => {
+    let playerGrid = document.querySelector('#playerContainer')
+    let computerGrid = document.querySelector('#computerContainer')
+    for (let i = 0; i < 9; i++) {
+        let row = document.createElement('div')
+        row.classList.add('row');
+        for (let j = 0; j < 9; j++) {
+            let tile = document.createElement('div')
+            tile.classList.add('tile')
+            tile.textContent = 's'
+            row.appendChild(tile)
+        }
+        playerGrid.appendChild(row)
+        computerGrid.appendChild(row)
+    }
+}
+drawGrid();*/
+
 export let newGame = () => {
 
     let generator = () => {
