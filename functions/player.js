@@ -1,6 +1,6 @@
 import { ships, gameboardFactory } from './gameboard.js';
 //const gameboardFactory = gameboard.gameboardFactory();
-const checker = gameboardFactory.checker;
+const checker = gameboardFactory().checker;
 
 export let newGame = () => {
 
