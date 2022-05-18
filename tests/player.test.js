@@ -1,5 +1,5 @@
-const player = require('../functions/player')
-const newGame = player.newGame();
+import { newGame as _newGame } from '../functions/player.js';
+const newGame = _newGame();
 describe('player tests', () => {
 
     test('player and computer board generation', () => {

@@ -1,5 +1,5 @@
-const ship = require('./ship');
-const shipFactory = ship.shipFactory;
+import { shipFactory } from './ship.js';
+//const shipFactory = ship.shipFactory;
 
 export const ships = {
     xsmall: shipFactory(2),

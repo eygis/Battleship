@@ -1,5 +1,5 @@
-const ship = require('../functions/ship');
-const shipFactory = ship.shipFactory;
+import { shipFactory as _shipFactory } from '../functions/ship.js';
+const shipFactory = _shipFactory;
 
 describe('ship tests', () => {
 
