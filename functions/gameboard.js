@@ -1,13 +1,19 @@
 import { shipFactory } from './ship.js';
 //const shipFactory = ship.shipFactory;
 
-export const ships = {
+/*export const ships = {
+    xsmall: shipFactory(2),
+    small: shipFactory(3),
+    medium: shipFactory(4)
+}*/
+
+export let gameboardFactory = () => {
+
+    const ships = {
     xsmall: shipFactory(2),
     small: shipFactory(3),
     medium: shipFactory(4)
 }
-
-export let gameboardFactory = () => {
 
     let coordinates = {
         xsmall: null,
@@ -21,6 +27,16 @@ export let gameboardFactory = () => {
       return	arr.length === target.length &&
         arr.every((c, i) => c === target[i]);
           }
+
+    let shotsChecker = (test) => {
+      let flag = true;
+      coordinates.shots.forEach(coord => {
+        if (checker(coord, test)) {
+          flag = false
+        }
+      })
+      return flag
+    }
     
     let generateCoordinates = (size) => {
       while (coordinates[size] == null) {
@@ -49,19 +65,20 @@ export let gameboardFactory = () => {
       }
     }
 
-    let receiveAttack = (attackLocation) => {
+    let receiveAttack = (attackLocation, target) => {
       let flag = false
       Object.values(coordinates).forEach((val, coordinatesIndex) => {
         if (val == null || coordinatesIndex == (Object.keys(coordinates).length - 1)) return
         val.forEach((pair, valueIndex) => {
-          if (checker(pair, attackLocation)) {
+          if (checker(pair, attackLocation) && shotsChecker(attackLocation)) {
             let damagedShip = Object.keys(ships)[coordinatesIndex];
             ships[damagedShip].hit(valueIndex);
+            document.querySelectorAll(`[data-coordinate="${attackLocation}"]`)[target=='player' ? 0 : 1].style.backgroundColor = 'red';
             flag = true;
           }
         })
         })
-        if (flag == false) {
+        if (flag == false && shotsChecker(attackLocation)) {
           coordinates.misses.push(attackLocation);
         }
       coordinates.shots.push(attackLocation)
@@ -84,6 +101,8 @@ export let gameboardFactory = () => {
         generateCoordinates,
         receiveAttack,
         allSunk,
-        checker
+        checker,
+        shotsChecker,
+        ships
     }
 }

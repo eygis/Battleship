@@ -19,6 +19,23 @@ let drawGrid = () => {
             computerTile.classList.add('tile', 'computer')
             computerTile.textContent = ''
             computerTile.dataset.coordinate = [j, i];
+            computerTile.addEventListener('click', (e) => {
+                let split = e.target.dataset.coordinate.split(',')
+                let array = []
+                split.forEach(string => array.push(parseInt(string)))
+                if (newGame.computer.board.shotsChecker(array)) {
+                    newGame.computer.board.receiveAttack(array, 'computer');
+                marker();
+                if (newGame.computer.board.allSunk()) {
+                    window.alert('You win!')
+                }
+                newGame.computerAttack();
+                marker();
+                if (newGame.human.board.allSunk()) {
+                    window.alert('Computer wins :(')
+                }
+                }
+            })
             computerRow.appendChild(computerTile)
         }
         playerGrid.appendChild(playerRow)
@@ -47,6 +64,17 @@ let drawGrid = () => {
     
 }
 
+let marker =  () => {
+    let playerMisses = newGame.human.board.coordinates.misses;
+    let computerMisses = newGame.computer.board.coordinates.misses;
+    for (let i = 0; i < playerMisses.length; i++) {
+        document.querySelectorAll(`[data-coordinate="${playerMisses[i]}"]`)[0].style.backgroundColor = 'grey'
+    }
+    for (let i = 0; i < computerMisses.length; i++) {
+        document.querySelectorAll(`[data-coordinate="${computerMisses[i]}"]`)[1].style.backgroundColor = 'grey'
+    }
+}
+
 
 drawGrid();
-
+marker();

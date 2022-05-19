@@ -1,6 +1,7 @@
-import { ships, gameboardFactory } from './gameboard.js';
+import { gameboardFactory } from './gameboard.js';
 //const gameboardFactory = gameboard.gameboardFactory();
 const checker = gameboardFactory().checker;
+const ships = gameboardFactory().ships
 
 export let newGame = () => {
 
@@ -27,19 +28,19 @@ export let newGame = () => {
         let available = () => {
         	let flag = true
         	human.board.coordinates.shots.forEach(val => {
-          	if (checker(array, val)) {
+          	if (checker(val, array)) {
             flag = false
-            return false
             }
           })
-          if (flag == true) {
-          return true
-          }
+          
+          return flag
+          
         }
         
-        if (available()) {
-        	human.board.receiveAttack(array)
+        while (!available()) {
+        	array = [random(), random()]
         }
+        human.board.receiveAttack(array, 'player')
     }
 
     let computer = {
