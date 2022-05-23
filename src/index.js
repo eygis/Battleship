@@ -51,15 +51,15 @@ let drawGrid = () => {
     
     for (let i = 0; i < 2; i++) {
         document.querySelectorAll(`[data-coordinate="${playerXsmallCoordinates[i]}"]`)[0].style.backgroundColor = 'green';
-        document.querySelectorAll(`[data-coordinate="${computerXsmallCoordinates[i]}"]`)[1].style.backgroundColor = 'green';
+        //document.querySelectorAll(`[data-coordinate="${computerXsmallCoordinates[i]}"]`)[1].style.backgroundColor = 'green';
     }
     for (let i = 0; i < 3; i++) {
         document.querySelectorAll(`[data-coordinate="${playerSmallCoordinates[i]}"]`)[0].style.backgroundColor = 'blue';
-        document.querySelectorAll(`[data-coordinate="${computerSmallCoordinates[i]}"]`)[1].style.backgroundColor = 'blue';
+        //document.querySelectorAll(`[data-coordinate="${computerSmallCoordinates[i]}"]`)[1].style.backgroundColor = 'blue';
     }
     for (let i = 0; i < 4; i++) {
         document.querySelectorAll(`[data-coordinate="${playerMediumCoordinates[i]}"]`)[0].style.backgroundColor = 'yellow';
-        document.querySelectorAll(`[data-coordinate="${computerMediumCoordinates[i]}"]`)[1].style.backgroundColor = 'yellow';
+        //document.querySelectorAll(`[data-coordinate="${computerMediumCoordinates[i]}"]`)[1].style.backgroundColor = 'yellow';
     }
     
 }
