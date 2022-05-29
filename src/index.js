@@ -1,5 +1,6 @@
 import { newGame as _newGame } from '../functions/player.js';
 const newGame = _newGame();
+import './styles.css'
 
 let drawGrid = () => {
     let playerGrid = document.querySelector('#playerContainer');
